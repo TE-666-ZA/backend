@@ -22,7 +22,7 @@ class ArrayToolsTests {
     this.inorrectArray1 = new int[] {2};
     this.incorrectArray2 = new int[] {7,-99};
     System.out.println("4 Arrays generated: " + "\n" + "Correct array 1 = " + correctArray1 + "\n" + "Correct array 2 = " + correctArray2);
-    System.out.println("Incorrect array 1 = ");
+    System.out.println("Incorrect array 1 = " + inorrectArray1 + "Incorrect array 2 = " + incorrectArray2);
 
   }
   @AfterEach
@@ -53,6 +53,20 @@ class ArrayToolsTests {
       return;
     }
     fail();
+  }
+
+  @Test
+  public void findSameValuesIn2ArraysCheckReturnValues(){
+    int[] expectedArrayReturn = {12,-9,-40};
+    int[] temp = tools.findSameValluesIn2Arrays(correctArray1,correctArray2);
+    int actualCorrectCounter = 0;
+    int expectedCorrectCounter = 3;
+    for(int i = 0; i < expectedArrayReturn.length; i++){
+      if(expectedArrayReturn[i] == temp[i]){
+        actualCorrectCounter++;
+      }
+    }
+    assertEquals(expectedCorrectCounter,actualCorrectCounter);
   }
 
 }
