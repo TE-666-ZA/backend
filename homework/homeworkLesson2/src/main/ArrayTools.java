@@ -1,3 +1,5 @@
+package main;
+
 public class ArrayTools {
 
   public int[] findSameValluesIn2Arrays(int[] array1 , int[] array2){
@@ -6,7 +8,7 @@ public class ArrayTools {
     int[] temp = new int[array1.length];
 
     for(int i = 0; i < array1.length; i++){
-      for (int j = 0; j < array2.length; i++){
+      for (int j = 0; j < array2.length; j++){
         if (array1[i] == array2[j]){
           temp[size] = array1[i];
           size++;
