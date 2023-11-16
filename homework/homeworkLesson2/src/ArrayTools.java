@@ -57,5 +57,17 @@ int[] result = new int[0];
     return result;
   }
 
+  public int FindSecondLowestNumberInArray(int[] array){
+    int min = array[0];
+    int result = array[0];
+
+    for (int i = 0; i < array.length; ++i){
+      if(array[i] < min){
+        result = min;
+        min = array[i];
+      }
+    }
+    return result;
+  }
 
 }
