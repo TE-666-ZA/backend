@@ -16,7 +16,7 @@ public class ArrayTools {
       }
     }
     if (size < 1){
-      throw new IndexOutOfBoundsException("no common numbers was found try again!");
+      throw new ArrayStoreException("no common numbers was found try again!");
     }
     int[] result = new int[size];
     for(int i = 0; i < size; i++){

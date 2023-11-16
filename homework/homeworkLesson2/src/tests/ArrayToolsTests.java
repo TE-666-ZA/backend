@@ -9,15 +9,21 @@ import org.junit.jupiter.api.Test;
 class ArrayToolsTests {
 
   private ArrayTools tools;
-  private int[] array1;
-  private int[] array2;
+  private int[] correctArray1;
+  private int[] correctArray2;
+  private int[] inorrectArray1;
+  private int[] incorrectArray2;
 
   @BeforeEach public void init(){
     System.out.println("test is running ");
     this.tools = new ArrayTools();
-    this.array1 = new int[] {12,-9,69,52,0,-40,6,9,45,69};
-    this.array2 = new int[] {12, 105, -9, 99, 100 , -40};
-    System.out.println("2 Arrays generated: " + "\n" + "Array 1 = " + array1 + "\n" + "Array 2 = " + array2 );
+    this.correctArray1 = new int[] {12,-9,69,52,0,-40,6,9,45,69};
+    this.correctArray2 = new int[] {12, 105, -9, 99, 100 , -40};
+    this.inorrectArray1 = new int[] {2};
+    this.incorrectArray2 = new int[] {7,-99};
+    System.out.println("4 Arrays generated: " + "\n" + "Correct array 1 = " + correctArray1 + "\n" + "Correct array 2 = " + correctArray2);
+    System.out.println("Incorrect array 1 = ");
+
   }
   @AfterEach
   public void end(){
@@ -29,14 +35,24 @@ class ArrayToolsTests {
   @Test
   public void findSameValuesInArraysCheckReturnLength(){
        int expectedLength = 3;
-    int[] result = tools.findSameValluesIn2Arrays(array1,array2);
+    int[] result = tools.findSameValluesIn2Arrays(correctArray1, correctArray2);
     assertEquals(expectedLength,result.length);
 
   }
 
   @Test
   public void findSameValuesIn2ArraysReturnNotNull(){
-    assertNotNull(tools.findSameValluesIn2Arrays(array1,array2));
+    assertNotNull(tools.findSameValluesIn2Arrays(correctArray1, correctArray2));
+  }
+
+  @Test
+  public void findSameValuesIn2ArraysThrowErrorIfNoCommonValuesFind(){
+    try{
+      tools.findSameValluesIn2Arrays(inorrectArray1,incorrectArray2);
+    }catch (ArrayStoreException e){
+      return;
+    }
+    fail();
   }
 
 }
