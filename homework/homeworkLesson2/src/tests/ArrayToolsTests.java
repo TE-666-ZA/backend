@@ -63,10 +63,19 @@ class ArrayToolsTests {
   }
 
   @Test
-  public void deleteSameValuesInArraysReturnsCorrectArrayLenght(){
+  public void deleteSameValuesInArrayReturnsCorrectArrayLength(){
     int expectedLength = correctArray1.length - 3;
     int[] result = tools.deleteSameValuesInArray(correctArray1);
     assertEquals(expectedLength,result.length);
+  }
+
+  @Test
+  public void deleteSameValuesInArrayReturnsSameArrayIfNothingFound(){
+    int expected1 = 7;
+    int expected2 = -99;
+    int[] result = tools.deleteSameValuesInArray(incorrectArray2);
+    assertEquals(expected1,result[0]);
+    assertEquals(expected2,result[1]);
   }
 
 }
