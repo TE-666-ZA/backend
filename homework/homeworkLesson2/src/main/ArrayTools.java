@@ -60,6 +60,9 @@ public class ArrayTools {
         result = max;
         max = array[i];
       }
+      if(array[i] < max && array[i] > result){
+        result = array[i];
+      }
     }
     return result;
   }

@@ -18,7 +18,7 @@ class ArrayToolsTests {
     System.out.println("test is running ");
     this.tools = new ArrayTools();
     this.correctArray1 = new int[] {12,-9,69,52,0,-40,0,6,9,0,45,69};
-    this.correctArray2 = new int[] {12, 105, -9, 99, 100 , 12,-40};
+    this.correctArray2 = new int[] {101,12, 105, -9, 99, 100 , 12,-40};
     this.inorrectArray1 = new int[] {2};
     this.incorrectArray2 = new int[] {7,-99};
   }
@@ -81,6 +81,13 @@ class ArrayToolsTests {
   @Test
   public void deleteSameValuesInArrayReturnsNotNull(){
     assertNotNull(tools.deleteSameValuesInArray(correctArray2));
+  }
+
+  @Test
+  public void FindSecondBiggestNumberInArrayReturnsCorrectValue(){
+    int expected = 101;
+    int result = tools.FindSecondBiggestNumberInArray(correctArray2);
+    assertEquals(expected,result);
   }
 
 
