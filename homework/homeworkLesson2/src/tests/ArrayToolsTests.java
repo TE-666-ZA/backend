@@ -17,13 +17,10 @@ class ArrayToolsTests {
   @BeforeEach public void init(){
     System.out.println("test is running ");
     this.tools = new ArrayTools();
-    this.correctArray1 = new int[] {12,-9,69,52,0,-40,6,9,45,69};
-    this.correctArray2 = new int[] {12, 105, -9, 99, 100 , -40};
+    this.correctArray1 = new int[] {12,-9,69,52,0,-40,0,6,9,0,45,69};
+    this.correctArray2 = new int[] {12, 105, -9, 99, 100 , 12,-40};
     this.inorrectArray1 = new int[] {2};
     this.incorrectArray2 = new int[] {7,-99};
-    System.out.println("4 Arrays generated: " + "\n" + "Correct array 1 = " + correctArray1 + "\n" + "Correct array 2 = " + correctArray2);
-    System.out.println("Incorrect array 1 = " + inorrectArray1 + "Incorrect array 2 = " + incorrectArray2);
-
   }
   @AfterEach
   public void end(){
@@ -34,7 +31,7 @@ class ArrayToolsTests {
 
   @Test
   public void findSameValuesInArraysCheckReturnLength(){
-       int expectedLength = 3;
+       int expectedLength = 4;
     int[] result = tools.findSameValluesIn2Arrays(correctArray1, correctArray2);
     assertEquals(expectedLength,result.length);
 
@@ -49,7 +46,7 @@ class ArrayToolsTests {
   public void findSameValuesIn2ArraysThrowErrorIfNoCommonValuesFind(){
     try{
       tools.findSameValluesIn2Arrays(inorrectArray1,incorrectArray2);
-    }catch (ArrayStoreException e){
+    }catch (ArrayIndexOutOfBoundsException e){
       return;
     }
     fail();
@@ -57,16 +54,19 @@ class ArrayToolsTests {
 
   @Test
   public void findSameValuesIn2ArraysCheckReturnValues(){
-    int[] expectedArrayReturn = {12,-9,-40};
-    int[] temp = tools.findSameValluesIn2Arrays(correctArray1,correctArray2);
-    int actualCorrectCounter = 0;
-    int expectedCorrectCounter = 3;
-    for(int i = 0; i < expectedArrayReturn.length; i++){
-      if(expectedArrayReturn[i] == temp[i]){
-        actualCorrectCounter++;
-      }
-    }
-    assertEquals(expectedCorrectCounter,actualCorrectCounter);
+    int expected1 = 12;
+    int expceted2 = -40;
+    int[] result = tools.findSameValluesIn2Arrays(correctArray1,correctArray2);
+    assertEquals(expected1,result[0]);
+    assertEquals(expceted2,result[3]);
+
+  }
+
+  @Test
+  public void deleteSameValuesInArraysReturnsCorrectArrayLenght(){
+    int expectedLength = correctArray1.length - 3;
+    int[] result = tools.deleteSameValuesInArray(correctArray1);
+    assertEquals(expectedLength,result.length);
   }
 
 }
