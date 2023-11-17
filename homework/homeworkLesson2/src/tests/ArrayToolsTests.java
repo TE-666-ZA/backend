@@ -78,4 +78,10 @@ class ArrayToolsTests {
     assertEquals(expected2,result[1]);
   }
 
+  @Test
+  public void deleteSameValuesInArrayReturnsNotNull(){
+    assertNotNull(tools.deleteSameValuesInArray(correctArray2));
+  }
+
+
 }
