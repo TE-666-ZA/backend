@@ -76,6 +76,9 @@ public class ArrayTools {
         result = min;
         min = array[i];
       }
+      if(array[i] > min && array[i] < result){
+        result = array[i];
+      }
     }
     return result;
   }

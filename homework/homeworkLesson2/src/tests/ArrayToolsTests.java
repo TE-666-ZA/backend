@@ -90,5 +90,11 @@ class ArrayToolsTests {
     assertEquals(expected,result);
   }
 
+  @Test
+  public void FindSecondLowestNumberInArray(){
+    int expected = -9;
+    int result = tools.FindSecondLowestNumberInArray(correctArray1);
+    assertEquals(expected,result);
+  }
 
 }
