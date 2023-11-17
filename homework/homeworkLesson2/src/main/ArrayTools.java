@@ -57,10 +57,11 @@ public class ArrayTools {
 
     for (int i = 0; i < array.length; ++i) {
       if (array[i] > max) {
-        result = max;
         max = array[i];
       }
-      if(array[i] < max && array[i] > result){
+    }
+    for (int i = 0; i < array.length; ++i) {
+      if (array[i] > result && array[i] != max || result == max) {
         result = array[i];
       }
     }
@@ -73,10 +74,11 @@ public class ArrayTools {
 
     for (int i = 0; i < array.length; ++i) {
       if (array[i] < min) {
-        result = min;
         min = array[i];
       }
-      if(array[i] > min && array[i] < result){
+    }
+    for (int i = 0; i < array.length; ++i) {
+      if (array[i] < result && array[i] != min || result == min) {
         result = array[i];
       }
     }
