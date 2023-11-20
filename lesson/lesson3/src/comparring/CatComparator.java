@@ -8,10 +8,10 @@ public class CatComparator implements Comparator<Cat> {
   public int compare(Cat o1, Cat o2) {
 
     if (o1.getColor() == null && o2.getColor() != null){
-      return -1;
+      return 1;
     }
     if (o1.getColor() != null && o2.getColor() == null){
-      return 1;
+      return -1;
     }
 
     int result = o1.getColor().compareTo(o2.getColor());
