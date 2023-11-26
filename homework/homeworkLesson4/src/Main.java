@@ -21,7 +21,7 @@ public class Main {
 
     }
 
-    public static void testingExceptions(int n) throws ArrayLengthCantBeBiggerThanActualException, CantBeZeroException, ArrayLengthCantBeNegative {
+    public static void testingExceptions(int n) throws  CantBeZeroException {
 
         if(n == 0){
             throw new CantBeZeroException("You cant input 0 ");

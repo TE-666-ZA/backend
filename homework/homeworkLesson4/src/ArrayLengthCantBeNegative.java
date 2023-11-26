@@ -1,4 +1,4 @@
-public class ArrayLengthCantBeNegative extends Exception{
+public class ArrayLengthCantBeNegative extends ArrayIndexOutOfBoundsException{
 
     public ArrayLengthCantBeNegative(String message){
         super(message);
