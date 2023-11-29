@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f33f0286-6fb8-4c1d-ae59-30e2d1079412" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/code/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/code/ApplicationV2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/staff/admin/Director.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/staff/admin/ProductionChief.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/staff/admin/SalesChief.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/staff/specialists/Secretary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/staff/specialists/production/MachineOperator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/staff/specialists/production/Storekeeper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/staff/specialists/sales/Merchandiser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/staff/specialists/sales/SalesManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/app/code/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/app/code/ApplicationV2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/app/staff/admin/Director.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/app/staff/admin/ProductionChief.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/app/staff/admin/SalesChief.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/app/staff/specialists/Secretary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/app/staff/specialists/production/MachineOperator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/app/staff/specialists/production/Storekeeper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/app/staff/specialists/sales/Merchandiser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/app/staff/specialists/sales/SalesManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../Spring_intro/src/beans.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/app/code/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/app/code/ApplicationV2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/app/staff/admin/Director.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/app/staff/admin/ProductionChief.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/app/staff/admin/SalesChief.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/app/staff/specialists/Secretary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/app/staff/specialists/production/MachineOperator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/app/staff/specialists/production/Storekeeper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/app/staff/specialists/sales/Merchandiser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/app/staff/specialists/sales/SalesManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson6/Spring_intro/src/beans.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2YrsY3jusmnhu8B1Arlc131XD8v" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "lesson6",
+    "last_opened_file_path": "F:/PROGRAMMING/BackEnd/src/main/java/lesson/lesson6(Spring_Beans)/Spring_intro",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f33f0286-6fb8-4c1d-ae59-30e2d1079412" name="Changes" comment="" />
+      <created>1701295079561</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701295079561</updated>
+    </task>
+    <servers />
+  </component>
+</project>
