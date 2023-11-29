@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cat>
+    <age>3</age>
+    <color>Black</color>
+    <weight>4.56</weight>
+    <owner first_name="Bob Marley">
+        <cellphone>666</cellphone>
+    </owner>
+
+    <food_list>
+        <food>
+            <label>Hills</label>
+            <requiredQuantity>4</requiredQuantity>
+        </food>
+        <food>
+            <label>Purina</label>
+            <requiredQuantity>6</requiredQuantity>
+        </food>
+    </food_list>
+</cat>
