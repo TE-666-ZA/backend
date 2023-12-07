@@ -1,9 +1,13 @@
 package carECUs;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class OnBoardControlModule {
 
+  @Autowired
   private EngineControlModule engineControlModule;
 
+  @Autowired
   private GearboxControlModule gearboxControlModule;
 
   public void startTheCar(){
