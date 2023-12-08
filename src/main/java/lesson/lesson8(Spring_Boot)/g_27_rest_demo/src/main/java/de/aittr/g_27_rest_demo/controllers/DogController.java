@@ -1,29 +1,24 @@
 package de.aittr.g_27_rest_demo.controllers;
 
-import de.aittr.g_27_rest_demo.domain.Cat;
-import de.aittr.g_27_rest_demo.services.CatService;
+import de.aittr.g_27_rest_demo.domain.Dog;
+import de.aittr.g_27_rest_demo.services.DogService;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 @RestController
-@RequestMapping("/cats")
-public class CatController {
+@RequestMapping("/dogs")
+public class DogController {
 
+  private DogService service;
 
-  private CatService service;
-  public CatController(CatService service) {
+  public DogController(DogService service) {
     this.service = service;
   }
 
   @GetMapping("/all")
-  public List<Cat> getAll(){
+  public List<Dog> getAll(){
     return service.getAll();
   }
-
-
-  public Cat save(Cat obj){
-    return service.save(obj);
-  }
-
 }
