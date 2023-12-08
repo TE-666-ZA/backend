@@ -37,14 +37,7 @@ public class CatRepository implements ICrudRepository<Cat> {
     }
     return obj;
   }
-
-  public static void main(String[] args) {
-    Cat cat = new Cat(15,80,"some",5.36);
-    CatRepository repository = new CatRepository();
-    repository.save(cat);
-    System.out.println();
-  }
-    @Override
+   @Override
   public Cat getById(int id) {
     return null;
   }
