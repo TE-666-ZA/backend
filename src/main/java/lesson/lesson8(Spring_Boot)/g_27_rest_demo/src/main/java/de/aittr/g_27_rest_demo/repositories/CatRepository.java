@@ -17,8 +17,11 @@ public class CatRepository implements ICrudRepository<Cat> {
 
   @Override
   public Cat save(Cat obj) {
-    Cat temp = getAll().get(getAll().size()-1);
-    if (obj.getId() != temp.getId() + 1){
+       if(getAll().isEmpty()){
+         obj.setId(1);
+       }
+    else {
+         Cat temp = getAll().getLast();
       obj.setId(temp.getId() + 1);
     }
     StringBuilder catToSave = new StringBuilder()
