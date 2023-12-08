@@ -2,8 +2,10 @@ package de.aittr.g_27_rest_demo.repositories;
 
 import de.aittr.g_27_rest_demo.domain.Cat;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
@@ -15,10 +17,34 @@ public class CatRepository implements ICrudRepository<Cat> {
 
   @Override
   public Cat save(Cat obj) {
-    return null;
+    Cat temp = getAll().get(getAll().size()-1);
+    if (obj.getId() != temp.getId() + 1){
+      obj.setId(temp.getId() + 1);
+    }
+    StringBuilder catToSave = new StringBuilder()
+        .append(obj.getId())
+        .append(DELIMITER)
+        .append(obj.getAge())
+        .append(DELIMITER)
+        .append(obj.getColor())
+        .append(DELIMITER)
+        .append(obj.getWeight())
+        .append("\n");
+    try(BufferedWriter writer = new BufferedWriter(new FileWriter(file,true))){
+      writer.write(catToSave.toString());
+    }catch (Exception e){
+      throw new RuntimeException(e);
+    }
+    return obj;
   }
 
-  @Override
+  public static void main(String[] args) {
+    Cat cat = new Cat(15,80,"some",5.36);
+    CatRepository repository = new CatRepository();
+    repository.save(cat);
+    System.out.println();
+  }
+    @Override
   public Cat getById(int id) {
     return null;
   }

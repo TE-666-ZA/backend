@@ -3,7 +3,7 @@ package de.aittr.g_27_rest_demo.domain;
 import java.util.Objects;
 
 
-public class Cat implements ICat{
+public class Cat implements IPet {
 
   private int id;
   private int age;
@@ -29,6 +29,11 @@ public class Cat implements ICat{
   }
 
   @Override
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  @Override
   public int getAge() {
     return age;
   }
@@ -41,11 +46,6 @@ public class Cat implements ICat{
   @Override
   public double getWeight() {
     return weight;
-  }
-
-  @Override
-  public void setId(int id) {
-    this.id = id;
   }
 
   @Override
