@@ -1,6 +1,5 @@
 package de.aittr.g_27_rest_demo.repositories;
 
-import de.aittr.g_27_rest_demo.domain.Cat;
 import de.aittr.g_27_rest_demo.domain.Dog;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,9 +16,12 @@ public class DogRepository implements ICrudRepository<Dog>{
 
   @Override
   public Dog save(Dog obj) {
-    Dog temp = getAll().get(getAll().size()-1);
-    if (obj.getId() != temp.getId() + 1){
-      obj.setId(temp.getId() + 1);
+   List<Dog> dogs = getAll();
+   if (dogs.isEmpty()){
+     obj.setId(1);
+   }
+    else {
+      obj.setId(dogs.getLast().getId() + 1);
     }
     StringBuilder catToSave = new StringBuilder()
         .append(obj.getId())
