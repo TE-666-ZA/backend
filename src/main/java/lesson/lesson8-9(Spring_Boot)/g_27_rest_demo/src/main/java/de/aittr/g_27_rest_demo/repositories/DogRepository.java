@@ -13,16 +13,31 @@ import org.springframework.stereotype.Repository;
 public class DogRepository implements ICrudRepository<Dog>{
   final private String DELIMITER = ";";
   private File file = new File("dog.txt");
+  private int lastId;
 
+  public DogRepository() {
+    readLastId();
+    System.out.println(lastId);
+  }
+
+  private void readLastId(){
+    try(BufferedReader reader = new BufferedReader(new FileReader(file))) {
+      List<String> lines = reader.lines().toList();
+      if(lines.isEmpty()){
+        this.lastId = 0;
+      }else {
+        String[] lastLine = lines.getLast().split(DELIMITER);
+        this.lastId = Integer.parseInt(lastLine[0]);
+      }
+
+    }catch (Exception e){
+      throw new RuntimeException(e);
+    }
+  }
   @Override
   public Dog save(Dog obj) {
-   List<Dog> dogs = getAll();
-   if (dogs.isEmpty()){
-     obj.setId(1);
-   }
-    else {
-      obj.setId(dogs.getLast().getId() + 1);
-    }
+  this.lastId++;
+  obj.setId(this.lastId);
     StringBuilder catToSave = new StringBuilder()
         .append(obj.getId())
         .append(DELIMITER)

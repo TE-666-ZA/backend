@@ -14,17 +14,34 @@ public class CatRepository implements ICrudRepository<Cat> {
 
   final private String DELIMITER = ";";
   private File file = new File("cat.txt");
+  private int lastId;
+
+  public CatRepository() {
+    readLastId();
+    System.out.println(lastId);
+  }
+
+
+  private void readLastId(){
+    try(BufferedReader reader = new BufferedReader(new FileReader(file))) {
+      List<String> lines = reader.lines().toList();
+      if(lines.isEmpty()){
+        this.lastId = 0;
+      }else {
+       String[] lastLine = lines.getLast().split(DELIMITER);
+        this.lastId = Integer.parseInt(lastLine[0]);
+      }
+
+    }catch (Exception e){
+      throw new RuntimeException(e);
+    }
+  }
 
   @Override
   public Cat save(Cat obj) {
-    List<Cat> cats = getAll();
+    this.lastId++;
+      obj.setId(this.lastId);
 
-       if(cats.isEmpty()){
-         obj.setId(1);
-       }
-    else {
-      obj.setId(cats.getLast().getId() + 1);
-    }
     StringBuilder catToSave = new StringBuilder()
         .append(obj.getId())
         .append(DELIMITER)
@@ -41,6 +58,7 @@ public class CatRepository implements ICrudRepository<Cat> {
     }
     return obj;
   }
+
    @Override
   public Cat getById(int id) {
     return null;
