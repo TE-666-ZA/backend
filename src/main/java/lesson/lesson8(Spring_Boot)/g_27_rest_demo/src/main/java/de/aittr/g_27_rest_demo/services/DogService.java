@@ -1,33 +1,33 @@
 package de.aittr.g_27_rest_demo.services;
 
-import de.aittr.g_27_rest_demo.domain.Cat;
-import de.aittr.g_27_rest_demo.repositories.CatRepository;
+import de.aittr.g_27_rest_demo.domain.Dog;
+import de.aittr.g_27_rest_demo.repositories.DogRepository;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CatService implements IService<Cat>{
+public class DogService implements IService<Dog>{
 
-  private CatRepository repository;
+  private DogRepository repository;
 
-  public CatService(CatRepository repository) {
+  public DogService (DogRepository repository){
     this.repository = repository;
   }
 
+
   @Override
-  public Cat save(Cat obj) {
+  public Dog save(Dog obj) {
     return repository.save(obj);
   }
 
   @Override
-  public Cat getByID(int id) {
+  public Dog getByID(int id) {
     return null;
   }
 
   @Override
-  public List<Cat> getAll() {
+  public List<Dog> getAll() {
     return new ArrayList<>(repository.getAll());
   }
 

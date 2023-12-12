@@ -1,6 +1,6 @@
 package de.aittr.g_27_rest_demo.repositories;
 
-import de.aittr.g_27_rest_demo.domain.Cat;
+import de.aittr.g_27_rest_demo.domain.Dog;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,20 +10,18 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CatRepository implements ICrudRepository<Cat> {
-
+public class DogRepository implements ICrudRepository<Dog>{
   final private String DELIMITER = ";";
-  private File file = new File("cat.txt");
+  private File file = new File("dog.txt");
 
   @Override
-  public Cat save(Cat obj) {
-    List<Cat> cats = getAll();
-
-       if(cats.isEmpty()){
-         obj.setId(1);
-       }
+  public Dog save(Dog obj) {
+   List<Dog> dogs = getAll();
+   if (dogs.isEmpty()){
+     obj.setId(1);
+   }
     else {
-      obj.setId(cats.getLast().getId() + 1);
+      obj.setId(dogs.getLast().getId() + 1);
     }
     StringBuilder catToSave = new StringBuilder()
         .append(obj.getId())
@@ -41,23 +39,23 @@ public class CatRepository implements ICrudRepository<Cat> {
     }
     return obj;
   }
-   @Override
-  public Cat getById(int id) {
+  @Override
+  public Dog getById(int id) {
     return null;
   }
 
   @Override
-  public List<Cat> getAll() {
+  public List<Dog> getAll() {
     try(BufferedReader reader = new BufferedReader(new FileReader(file))){
-     return reader.lines()
-         .map(line -> line.split(DELIMITER))
-         .map(array -> new Cat(
-             Integer.parseInt(array[0]),
-             Integer.parseInt(array[1]),
-             array[2],
-             Double.parseDouble(array[3])
-         ))
-         .toList();
+      return reader.lines()
+          .map(line -> line.split(DELIMITER))
+          .map(array -> new Dog(
+              Integer.parseInt(array[0]),
+              Integer.parseInt(array[1]),
+              array[2],
+              Double.parseDouble(array[3])
+          ))
+          .toList();
     }catch (Exception e){
       throw new RuntimeException(e);
     }
@@ -67,4 +65,5 @@ public class CatRepository implements ICrudRepository<Cat> {
   public void deleteById(int id) {
 
   }
+
 }
