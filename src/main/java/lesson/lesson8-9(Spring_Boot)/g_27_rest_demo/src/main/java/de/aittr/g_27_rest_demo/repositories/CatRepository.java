@@ -1,16 +1,20 @@
 package de.aittr.g_27_rest_demo.repositories;
 
 import de.aittr.g_27_rest_demo.domain.Cat;
+import de.aittr.g_27_rest_demo.domain.ICat;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CatRepository implements ICrudRepository<Cat> {
+public class CatRepository implements ICrudRepository<ICat> {
 
   final private String DELIMITER = ";";
   private File file = new File("cat.txt");
@@ -38,9 +42,8 @@ public class CatRepository implements ICrudRepository<Cat> {
   }
 
   @Override
-  public Cat save(Cat obj) {
-    this.lastId++;
-      obj.setId(this.lastId);
+  public ICat save(ICat obj) {
+      obj.setId(++lastId);
 
     StringBuilder catToSave = new StringBuilder()
         .append(obj.getId())
@@ -60,22 +63,26 @@ public class CatRepository implements ICrudRepository<Cat> {
   }
 
    @Override
-  public Cat getById(int id) {
-    return null;
+  public ICat getById(int id) {
+     return getAll().stream()
+         .filter(x -> x.getId() == id)
+         .findFirst()
+         .orElseThrow(() -> new NoSuchElementException("Pet with ID " + id + " not found"));
   }
 
   @Override
-  public List<Cat> getAll() {
+  public List<ICat> getAll() {
     try(BufferedReader reader = new BufferedReader(new FileReader(file))){
-     return reader.lines()
+     return new ArrayList(reader.lines()
          .map(line -> line.split(DELIMITER))
          .map(array -> new Cat(
              Integer.parseInt(array[0]),
              Integer.parseInt(array[1]),
              array[2],
              Double.parseDouble(array[3])
-         ))
-         .toList();
+         ) {
+         })
+         .toList()) ;
     }catch (Exception e){
       throw new RuntimeException(e);
     }
@@ -83,6 +90,27 @@ public class CatRepository implements ICrudRepository<Cat> {
 
   @Override
   public void deleteById(int id) {
+    List<ICat> cats = getAll();
+    cats.remove(cats.get(id));
+    String result = cats.stream()
+        .map(x -> new StringBuilder()
+            .append(x.getId())
+            .append(DELIMITER)
+            .append(x.getAge())
+            .append(DELIMITER)
+            .append(x.getColor().toLowerCase())
+            .append(DELIMITER)
+            .append(x.getWeight())
+            .append("\n")).collect(Collectors.joining());
 
+
+    try(BufferedWriter writer = new BufferedWriter(new FileWriter(file)) ){
+      writer.write(result);
+    }catch (Exception e){
+      throw new RuntimeException(e);
+    }
+  }
+  public int getLastId() {
+    return lastId;
   }
 }

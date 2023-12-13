@@ -1,14 +1,12 @@
 package de.aittr.g_27_rest_demo.services;
 
-import de.aittr.g_27_rest_demo.domain.Cat;
+import de.aittr.g_27_rest_demo.domain.ICat;
 import de.aittr.g_27_rest_demo.repositories.CatRepository;
-import java.util.ArrayList;
 import java.util.List;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CatService implements IService<Cat>{
+public class CatService implements ICatService<ICat> {
 
   private CatRepository repository;
 
@@ -17,22 +15,35 @@ public class CatService implements IService<Cat>{
   }
 
   @Override
-  public Cat save(Cat obj) {
+  public ICat save(ICat obj) {
+    if(obj.getAge() < 0){
+      throw new IllegalArgumentException("Age cant be negative");
+    }
+    if (obj.getColor().isBlank() || obj.getColor().isEmpty()){
+      throw new IllegalArgumentException("Color field cant be empty!");
+    }
+    if(obj.getWeight() <= 0.0){
+      throw new IllegalArgumentException("weight cant be negative or zero!");
+    }
     return repository.save(obj);
   }
 
   @Override
-  public Cat getByID(int id) {
-    return null;
+  public ICat getByID(int id) {
+   return repository.getById(id);
   }
 
   @Override
-  public List<Cat> getAll() {
-    return new ArrayList<>(repository.getAll());
+  public List<ICat> getAll() {
+    return repository.getAll();
   }
 
   @Override
   public void deleteById(int id) {
-
+    id -= 1;
+    if (id <= 0 || id > repository.getLastId()){
+      throw new IllegalArgumentException("ID cant be negative or above the biggest number in repository");
+    }
+      repository.deleteById(id);
   }
 }

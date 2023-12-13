@@ -3,12 +3,15 @@ package de.aittr.g_27_rest_demo.domain;
 import java.util.Objects;
 
 
-public class Cat implements IPet {
+public class Cat implements ICat {
 
   private int id;
   private int age;
   private String color;
   private double weight;
+
+  public Cat() {
+  }
 
   public Cat(int age, String color, double weight) {
     this.age = age;

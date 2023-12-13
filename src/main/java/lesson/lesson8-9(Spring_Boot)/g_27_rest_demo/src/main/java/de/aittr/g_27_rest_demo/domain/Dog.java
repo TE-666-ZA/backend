@@ -2,7 +2,7 @@ package de.aittr.g_27_rest_demo.domain;
 
 import java.util.Objects;
 
-public class Dog implements IPet{
+public class Dog implements ICat {
 
   private int id;
   private int age;

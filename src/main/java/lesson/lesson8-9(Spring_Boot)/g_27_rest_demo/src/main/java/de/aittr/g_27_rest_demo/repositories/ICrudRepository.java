@@ -6,10 +6,6 @@ public interface ICrudRepository<T> {
 
   T save(T obj);
 
-  private void readLastId() {
-
-  }
-
   T getById(int id);
 
     List<T> getAll();

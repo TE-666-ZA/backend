@@ -1,6 +1,6 @@
 package de.aittr.g_27_rest_demo.domain;
 
-public interface IPet {
+public interface ICat {
 
   int getId();
 
