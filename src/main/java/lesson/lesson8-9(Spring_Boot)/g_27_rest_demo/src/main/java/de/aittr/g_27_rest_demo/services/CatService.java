@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CatService implements ICatService<ICat> {
+public class CatService implements IService<ICat> {
 
   private CatRepository repository;
 
