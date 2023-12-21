@@ -1,4 +1,4 @@
-package Spring_Boot_Intro.domain;
+package Spring_Boot_Intro.domain.interfaces;
 
 public interface Product {
 
