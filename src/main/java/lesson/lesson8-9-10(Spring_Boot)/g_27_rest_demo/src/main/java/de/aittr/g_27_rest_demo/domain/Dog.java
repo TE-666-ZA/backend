@@ -9,6 +9,9 @@ public class Dog implements IDog {
   private String color;
   private double weight;
 
+  public Dog() {
+  }
+
   public Dog(int age, String color, double weight) {
     this.age = age;
     this.color = color;

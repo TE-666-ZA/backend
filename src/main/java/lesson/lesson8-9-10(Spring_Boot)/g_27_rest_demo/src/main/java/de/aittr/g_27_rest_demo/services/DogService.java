@@ -16,7 +16,7 @@ public class DogService implements IService<IDog> {
 
   @Override
   public IDog save(IDog obj) {
-    return null;
+    return repository.save(obj);
   }
 
   @Override

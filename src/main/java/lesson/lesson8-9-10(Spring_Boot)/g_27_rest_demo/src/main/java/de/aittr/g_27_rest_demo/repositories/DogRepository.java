@@ -8,11 +8,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class DogRepository implements ICrudRepository<IDog>{
-  private final String DELIMITER = ";";
   private final String ID = "dog_id";
   private final String AGE = "age";
   private final String COLOR = "color";
@@ -33,12 +33,21 @@ public class DogRepository implements ICrudRepository<IDog>{
       throw new RuntimeException(e);
     }
   }
-  private int lastId;
-
   @Override
   public IDog save(IDog obj) {
+    try(Connection connection = getConnection()){
 
-    return obj;
+      String query = String.format(Locale.US , "insert into dogs (%s,%s,%s) VALUES (%d,\"%s\",%.2f)"
+          ,AGE,COLOR,WEIGHT,
+          obj.getAge(),obj.getColor().toLowerCase(),obj.getWeight());
+      
+       connection.createStatement().execute(query);
+
+      return obj;
+
+    }catch (Exception e){
+      throw new RuntimeException(e);
+    }
   }
   @Override
   public IDog getById(int id) {
