@@ -40,7 +40,6 @@ public class DogController {
 
   @PostMapping("/save")
   public IDog save (@RequestBody Dog obj){
-    int i = 0;
     return service.save(obj);
   }
 
