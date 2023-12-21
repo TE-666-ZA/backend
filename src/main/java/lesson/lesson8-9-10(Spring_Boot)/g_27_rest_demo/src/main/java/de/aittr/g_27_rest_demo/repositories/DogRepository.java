@@ -40,8 +40,7 @@ public class DogRepository implements ICrudRepository<IDog>{
       String query = String.format(Locale.US , "insert into dogs (%s,%s,%s) VALUES (%d,\"%s\",%.2f)"
           ,AGE,COLOR,WEIGHT,
           obj.getAge(),obj.getColor().toLowerCase(),obj.getWeight());
-
-
+      
        connection.createStatement().execute(query);
 
       return obj;
