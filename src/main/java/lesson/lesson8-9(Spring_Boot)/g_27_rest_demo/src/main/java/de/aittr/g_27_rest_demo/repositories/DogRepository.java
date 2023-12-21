@@ -41,9 +41,6 @@ public class DogRepository implements ICrudRepository<IDog>{
           ,AGE,COLOR,WEIGHT,
           obj.getAge(),obj.getColor().toLowerCase(),obj.getWeight());
 
-      String test = ("insert into  animals.dogs (age,color,weight)values(6,\"back\",65.36)");
-
-
 
        connection.createStatement().execute(query);
 
