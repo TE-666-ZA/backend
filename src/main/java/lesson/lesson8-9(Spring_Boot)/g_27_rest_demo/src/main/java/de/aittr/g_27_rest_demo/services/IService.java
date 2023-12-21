@@ -2,7 +2,7 @@ package de.aittr.g_27_rest_demo.services;
 
 import java.util.List;
 
-public interface ICatService<T> {
+public interface IService<T> {
 
   T save(T obj);
 
