@@ -1,13 +1,19 @@
 package Spring_Boot_Intro.domain;
 
+import Spring_Boot_Intro.domain.interfaces.Product;
 import java.util.Objects;
 
-public class CommonProduct implements Product{
+
+public class CommonProduct implements Product {
 
   private int id;
   private boolean isActive;
   private String name;
   private double price;
+
+  public CommonProduct() {
+    this.isActive = true;
+  }
 
   public CommonProduct(String name, double price) {
     this.name = name;
@@ -34,6 +40,12 @@ public class CommonProduct implements Product{
     return Objects.hash(id, isActive, name, price);
   }
 
+  @Override
+  public String toString(){
+    return String.format("Product: ID - %d, name - %s, price - %.2f, is available - %s"
+        ,id,name,price,isActive ? "yes" : "no");
+  }
+
   public int getId() {
     return id;
   }
@@ -50,5 +62,9 @@ public class CommonProduct implements Product{
   @Override
   public double getPrice() {
     return price;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 }

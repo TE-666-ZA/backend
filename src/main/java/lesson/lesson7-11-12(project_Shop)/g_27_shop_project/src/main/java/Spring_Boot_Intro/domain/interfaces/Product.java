@@ -1,4 +1,4 @@
-package Spring_Boot_Intro.domain;
+package Spring_Boot_Intro.domain.interfaces;
 
 public interface Product {
 
@@ -9,4 +9,6 @@ public interface Product {
   String getName();
 
   double getPrice();
+
+  void setId(int id);
 }
