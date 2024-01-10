@@ -3,6 +3,7 @@ package Spring_Boot_Intro.domain;
 import Spring_Boot_Intro.domain.interfaces.Product;
 import java.util.Objects;
 
+
 public class CommonProduct implements Product {
 
   private int id;
@@ -61,5 +62,9 @@ public class CommonProduct implements Product {
   @Override
   public double getPrice() {
     return price;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 }
