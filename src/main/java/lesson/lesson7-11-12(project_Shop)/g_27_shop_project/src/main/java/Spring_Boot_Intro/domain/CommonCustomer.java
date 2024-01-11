@@ -21,6 +21,10 @@ public class CommonCustomer implements Customer {
     this.isActive = true;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
+
   public int getId() {
     return id;
   }
@@ -38,6 +42,11 @@ public class CommonCustomer implements Customer {
   @Override
   public Cart getCart() {
     return cart;
+  }
+
+  @Override
+  public void setCart(Cart cart) {
+    this.cart = cart;
   }
 
   @Override

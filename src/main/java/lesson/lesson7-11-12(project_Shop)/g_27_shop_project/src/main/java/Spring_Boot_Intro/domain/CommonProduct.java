@@ -21,6 +21,13 @@ public class CommonProduct implements Product {
     this.isActive = true;
   }
 
+  public CommonProduct(int id, String name, double price) {
+    this.id = id;
+    this.isActive = true;
+    this.name = name;
+    this.price = price;
+  }
+
   @Override
   public boolean equals(Object object) {
     if (this == object) {

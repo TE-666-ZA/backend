@@ -2,11 +2,13 @@ package Spring_Boot_Intro.repositories;
 
 import static Spring_Boot_Intro.repositories.DBConncection.getConnection;
 
+import Spring_Boot_Intro.domain.CommonProduct;
 import Spring_Boot_Intro.domain.interfaces.Product;
 import Spring_Boot_Intro.repositories.interfaces.ProductRepository;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import org.springframework.stereotype.Repository;
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Repository;
 public class CommonProductRepository implements ProductRepository {
 
   private final String ID = "id";
+  private final String NAME = "name";
+  private final String PRICE = "price";
 
   @Override
   public Product save(Product product) {
@@ -39,7 +43,21 @@ public class CommonProductRepository implements ProductRepository {
 
   @Override
   public List<Product> getAll() {
-    return null;
+    try(Connection connection = getConnection()) {
+
+      String query ="SELECT id,name,price FROM first_shop.products where is_Active = 1;";
+
+      ResultSet resultSet = connection.createStatement().executeQuery(query);
+
+      List<Product> products = new ArrayList<>();
+      while (resultSet.next()){
+        products.add(new CommonProduct(resultSet.getInt(ID),
+            resultSet.getString(NAME),resultSet.getDouble(PRICE)));
+      }
+        return products;
+    }catch (Exception e){
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
