@@ -55,7 +55,22 @@ public class CommonCustomerRepository implements CustomerRepository {
 
   @Override
   public List<Customer> getAll() {
-    return null;
+   try(Connection connection = getConnection()) {
+
+     String query = "select cu.id, cu.name, ca.id, cp.product_id, p.name, p.price, p.is_active " +
+         "from customer as cu " +
+         "left join cart as ca on cu.id = ca.customer_id " +
+         "left join cart_product as cp on ca.id = cp.cart_id " +
+         "left join product as p on cp.product_id = p.id " +
+         "where cu.is_active = 1;";
+
+     ResultSet resultSet = connection.createStatement().executeQuery(query);
+
+     while (resultSet.next()){
+     }
+   }catch (Exception e){
+   throw new  RuntimeException(e);
+   }
   }
 
   @Override
