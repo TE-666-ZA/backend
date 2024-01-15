@@ -3,7 +3,9 @@ package Spring_Boot_Intro.controllers;
 import Spring_Boot_Intro.domain.CommonCustomer;
 import Spring_Boot_Intro.domain.interfaces.Customer;
 import Spring_Boot_Intro.services.CommonCustomerService;
-import org.springframework.stereotype.Controller;
+import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,11 @@ public class CustomerController {
     this.service = service;
   }
 
+
+  @GetMapping("/get_all_active")
+  public List<Customer> getAllActiveCustomers(){
+    return service.getAllActiveCustomers();
+  }
   @PostMapping("/save")
   public Customer save (@RequestBody CommonCustomer customer){
     return service.save(customer);

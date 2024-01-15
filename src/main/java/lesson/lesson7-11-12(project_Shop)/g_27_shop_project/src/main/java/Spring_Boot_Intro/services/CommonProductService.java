@@ -32,11 +32,11 @@ public class CommonProductService implements ProductService {
 
   @Override
   public List<Product> getAllActiveProducts() {
-    List<Product> temp = repository.getAll();
-    if(temp.isEmpty()){
-      throw new NoSuchElementException("There is no active products");
+    List<Product> result = repository.getAll();
+    if(result.isEmpty()){
+      throw new NoSuchElementException("There is no active products in data base");
     }
-    return temp;
+    return result;
   }
 
   @Override

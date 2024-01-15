@@ -1,9 +1,11 @@
 package Spring_Boot_Intro.services;
 
 import Spring_Boot_Intro.domain.interfaces.Customer;
+import Spring_Boot_Intro.domain.interfaces.Product;
 import Spring_Boot_Intro.repositories.CommonCustomerRepository;
 import Spring_Boot_Intro.services.interfaces.CustomerService;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,7 +27,11 @@ public class CommonCustomerService implements CustomerService {
 
   @Override
   public List<Customer> getAllActiveCustomers() {
-    return null;
+    List<Customer> result = repository.getAll();
+    if(result.isEmpty()){
+      throw new NoSuchElementException("There is no active products");
+    }
+    return result;
   }
 
   @Override

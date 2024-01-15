@@ -2,6 +2,7 @@ package Spring_Boot_Intro.domain;
 
 import Spring_Boot_Intro.domain.interfaces.Cart;
 import Spring_Boot_Intro.domain.interfaces.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,7 @@ public class CommonCart implements Cart {
   }
 
   @Override
+  @JsonIgnore
   public double getAveragePrice() {
     return this.products.stream()
         .filter(x -> x.isActive())

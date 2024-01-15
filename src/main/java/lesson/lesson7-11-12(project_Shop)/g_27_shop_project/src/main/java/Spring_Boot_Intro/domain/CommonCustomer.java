@@ -15,10 +15,23 @@ public class CommonCustomer implements Customer {
     this.isActive = true;
   }
 
+  public CommonCustomer(int id, String name) {
+    this.id = id;
+    this.isActive = true;
+    this.name = name;
+  }
+
   public CommonCustomer(String name, Cart cart) {
     this.name = name;
     this.cart = cart;
     this.isActive = true;
+  }
+
+  public CommonCustomer(int id, boolean isActive, String name, Cart cart) {
+    this.id = id;
+    this.isActive = isActive;
+    this.name = name;
+    this.cart = cart;
   }
 
   public void setId(int id) {

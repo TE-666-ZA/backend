@@ -28,6 +28,8 @@ public class CommonProduct implements Product {
     this.price = price;
   }
 
+
+
   @Override
   public boolean equals(Object object) {
     if (this == object) {
