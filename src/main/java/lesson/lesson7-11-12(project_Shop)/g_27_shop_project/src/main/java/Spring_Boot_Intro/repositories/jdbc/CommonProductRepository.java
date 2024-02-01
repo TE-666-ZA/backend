@@ -1,9 +1,9 @@
-package Spring_Boot_Intro.repositories;
+package Spring_Boot_Intro.repositories.jdbc;
 
-import static Spring_Boot_Intro.repositories.DBConncection.getConnection;
+import static Spring_Boot_Intro.repositories.jdbc.DBConncection.getConnection;
 
-import Spring_Boot_Intro.domain.CommonProduct;
 import Spring_Boot_Intro.domain.interfaces.Product;
+import Spring_Boot_Intro.domain.jdbc.CommonProduct;
 import Spring_Boot_Intro.repositories.interfaces.ProductRepository;
 import java.sql.Connection;
 import java.sql.ResultSet;

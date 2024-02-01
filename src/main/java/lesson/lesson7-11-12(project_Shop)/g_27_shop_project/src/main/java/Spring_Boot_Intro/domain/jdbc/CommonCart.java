@@ -1,4 +1,4 @@
-package Spring_Boot_Intro.domain;
+package Spring_Boot_Intro.domain.jdbc;
 
 import Spring_Boot_Intro.domain.interfaces.Cart;
 import Spring_Boot_Intro.domain.interfaces.Product;

@@ -1,20 +1,19 @@
-package Spring_Boot_Intro.repositories;
+package Spring_Boot_Intro.repositories.jdbc;
 
-import static Spring_Boot_Intro.repositories.DBConncection.getConnection;
+import static Spring_Boot_Intro.repositories.jdbc.DBConncection.getConnection;
 
-import Spring_Boot_Intro.domain.CommonCart;
-import Spring_Boot_Intro.domain.CommonCustomer;
-import Spring_Boot_Intro.domain.CommonProduct;
+import Spring_Boot_Intro.domain.interfaces.Product;
+import Spring_Boot_Intro.domain.jdbc.CommonCart;
+import Spring_Boot_Intro.domain.jdbc.CommonCustomer;
+import Spring_Boot_Intro.domain.jdbc.CommonProduct;
 import Spring_Boot_Intro.domain.interfaces.Cart;
 import Spring_Boot_Intro.domain.interfaces.Customer;
-import Spring_Boot_Intro.domain.interfaces.Product;
 import Spring_Boot_Intro.repositories.interfaces.CustomerRepository;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package Spring_Boot_Intro.domain;
+package Spring_Boot_Intro.domain.jdbc;
 
 import Spring_Boot_Intro.domain.interfaces.Cart;
 import Spring_Boot_Intro.domain.interfaces.Customer;
@@ -48,8 +48,18 @@ public class CommonCustomer implements Customer {
   }
 
   @Override
+  public void setActive(boolean isActive) {
+    this.isActive = isActive;
+  }
+
+  @Override
   public String getName() {
     return name;
+  }
+
+  @Override
+  public void setName(String name) {
+
   }
 
   @Override

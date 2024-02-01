@@ -1,4 +1,4 @@
-package Spring_Boot_Intro.domain;
+package Spring_Boot_Intro.domain.jdbc;
 
 import Spring_Boot_Intro.domain.interfaces.Product;
 import java.util.Objects;
@@ -64,13 +64,28 @@ public class CommonProduct implements Product {
   }
 
   @Override
+  public void setActive(boolean isActive) {
+    this.isActive = isActive;
+  }
+
+  @Override
   public String getName() {
     return name;
   }
 
   @Override
+  public void setName(String name) {
+      this.name = name;
+  }
+
+  @Override
   public double getPrice() {
     return price;
+  }
+
+  @Override
+  public void setPrice(double price) {
+      this.price = price;
   }
 
   public void setId(int id) {

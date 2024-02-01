@@ -1,17 +1,18 @@
 package Spring_Boot_Intro.services.interfaces;
 
+import Spring_Boot_Intro.domain.DTO.ProductDto;
 import Spring_Boot_Intro.domain.interfaces.Product;
 import java.util.List;
 
 public interface ProductService {
 
-  Product save (Product product);
+  ProductDto save (ProductDto product);
 
-  List<Product> getAllActiveProducts();
+  List<ProductDto> getAllActiveProducts();
 
-  Product getActiveProductById(int id);
+  ProductDto getActiveProductById(int id);
 
-  void update(Product product);
+  void update(ProductDto product);
 
   void deleteById(int id);
 

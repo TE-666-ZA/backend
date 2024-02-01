@@ -1,11 +1,10 @@
 package Spring_Boot_Intro.controllers;
 
-import Spring_Boot_Intro.domain.CommonCustomer;
+import Spring_Boot_Intro.domain.jdbc.CommonCustomer;
 import Spring_Boot_Intro.domain.interfaces.Customer;
-import Spring_Boot_Intro.services.CommonCustomerService;
+import Spring_Boot_Intro.services.jdbc.CommonCustomerService;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

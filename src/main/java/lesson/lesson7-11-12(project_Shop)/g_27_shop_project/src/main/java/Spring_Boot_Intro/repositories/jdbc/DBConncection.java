@@ -1,4 +1,4 @@
-package Spring_Boot_Intro.repositories;
+package Spring_Boot_Intro.repositories.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

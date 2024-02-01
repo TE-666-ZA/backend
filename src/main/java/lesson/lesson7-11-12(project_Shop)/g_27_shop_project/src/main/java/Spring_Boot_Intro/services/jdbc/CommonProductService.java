@@ -1,23 +1,27 @@
-package Spring_Boot_Intro.services;
+package Spring_Boot_Intro.services.jdbc;
 
+import Spring_Boot_Intro.domain.DTO.ProductDto;
 import Spring_Boot_Intro.domain.interfaces.Product;
+import Spring_Boot_Intro.domain.jdbc.CommonProduct;
 import Spring_Boot_Intro.repositories.interfaces.ProductRepository;
 import Spring_Boot_Intro.services.interfaces.ProductService;
+import Spring_Boot_Intro.services.mapping.ProductMappingService;
 import java.util.List;
 import java.util.NoSuchElementException;
-import org.springframework.stereotype.Service;
 
-@Service
-public class CommonProductService implements ProductService {
+//@Service
+public  class CommonProductService implements ProductService {
 
   private ProductRepository repository;
+  private ProductMappingService mappingService;
 
-  public CommonProductService(ProductRepository repository) {
+  public CommonProductService(ProductRepository repository, ProductMappingService mappingService) {
     this.repository = repository;
+    this.mappingService = mappingService;
   }
 
   @Override
-  public Product save(Product product) {
+  public ProductDto save(ProductDto product) {
     if(product == null){
       throw new IllegalArgumentException("Product cant be null");
     }
@@ -25,14 +29,16 @@ public class CommonProductService implements ProductService {
       throw new IllegalArgumentException("Product name cant be empty");
     }
     if(product.getPrice() <= 0){
-      throw new IllegalArgumentException("Product price should be above 0");
+      throw new IllegalArgumentException("Product price should be above -1");
     }
-    return repository.save(product);
+    Product entity = mappingService.mapDtoToCommon(product);
+    entity = repository.save(entity);
+    return mappingService.mapEntityToDto(entity);
   }
 
   @Override
-  public List<Product> getAllActiveProducts() {
-    List<Product> result = repository.getAll();
+  public List<ProductDto> getAllActiveProducts() {
+    List<ProductDto> result = repository.getAll();
     if(result.isEmpty()){
       throw new NoSuchElementException("There is no active products in data base");
     }
@@ -40,12 +46,12 @@ public class CommonProductService implements ProductService {
   }
 
   @Override
-  public Product getActiveProductById(int id) {
+  public ProductDto getActiveProductById(int id) {
     return null;
   }
 
   @Override
-  public void update(Product product) {
+  public void update(ProductDto product) {
 
   }
 
@@ -58,6 +64,7 @@ public class CommonProductService implements ProductService {
   public void deleteByName(String name) {
 
   }
+
 
   @Override
   public void restoreById(int id) {

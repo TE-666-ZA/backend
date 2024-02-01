@@ -1,14 +1,13 @@
-package Spring_Boot_Intro.services;
+package Spring_Boot_Intro.services.jdbc;
 
 import Spring_Boot_Intro.domain.interfaces.Customer;
-import Spring_Boot_Intro.domain.interfaces.Product;
-import Spring_Boot_Intro.repositories.CommonCustomerRepository;
+import Spring_Boot_Intro.repositories.jdbc.CommonCustomerRepository;
 import Spring_Boot_Intro.services.interfaces.CustomerService;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class CommonCustomerService implements CustomerService {
 
   private CommonCustomerRepository repository;

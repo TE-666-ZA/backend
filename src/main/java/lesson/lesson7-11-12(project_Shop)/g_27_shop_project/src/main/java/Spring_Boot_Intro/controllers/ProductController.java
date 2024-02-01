@@ -1,10 +1,9 @@
 package Spring_Boot_Intro.controllers;
 
-import Spring_Boot_Intro.domain.CommonProduct;
+import Spring_Boot_Intro.domain.DTO.ProductDto;
 import Spring_Boot_Intro.domain.interfaces.Product;
 import Spring_Boot_Intro.services.interfaces.ProductService;
 import java.util.List;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,12 +20,12 @@ public class ProductController {
     this.service = service;
   }
   @PostMapping("/save")
-  public Product save(@RequestBody CommonProduct product){
+  public ProductDto save(@RequestBody ProductDto product){
     return service.save(product);
   }
 
   @GetMapping("/get_all")
-  public List<Product> getAll(){
+  public List<ProductDto> getAll(){
    return service.getAllActiveProducts();
   }
 }
