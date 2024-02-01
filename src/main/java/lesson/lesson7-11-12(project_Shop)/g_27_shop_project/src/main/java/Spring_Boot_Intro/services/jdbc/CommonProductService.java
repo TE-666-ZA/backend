@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 //@Service
-public  class CommonProductService implements ProductService {
+public class CommonProductService implements ProductService {
 
   private ProductRepository repository;
   private ProductMappingService mappingService;
@@ -22,27 +22,28 @@ public  class CommonProductService implements ProductService {
 
   @Override
   public ProductDto save(ProductDto product) {
-    if(product == null){
+    if (product == null) {
       throw new IllegalArgumentException("Product cant be null");
     }
-    if(product.getName().isBlank() || product.getName().isEmpty()){
+    if (product.getName().isBlank() || product.getName().isEmpty()) {
       throw new IllegalArgumentException("Product name cant be empty");
     }
-    if(product.getPrice() <= 0){
+    if (product.getPrice() <= 0) {
       throw new IllegalArgumentException("Product price should be above -1");
     }
     Product entity = mappingService.mapDtoToCommon(product);
+    entity.setId(0);
     entity = repository.save(entity);
     return mappingService.mapEntityToDto(entity);
   }
 
   @Override
   public List<ProductDto> getAllActiveProducts() {
-    List<ProductDto> result = repository.getAll();
-    if(result.isEmpty()){
+    List<Product> result = repository.getAll();
+    if (result.isEmpty()) {
       throw new NoSuchElementException("There is no active products in data base");
     }
-    return result;
+    return result.stream().map(x -> mappingService.mapEntityToDto(x)).toList();
   }
 
   @Override

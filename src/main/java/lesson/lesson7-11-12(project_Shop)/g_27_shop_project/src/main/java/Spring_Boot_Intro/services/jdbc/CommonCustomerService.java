@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 
-//@Service
+@Service
 public class CommonCustomerService implements CustomerService {
 
   private CommonCustomerRepository repository;

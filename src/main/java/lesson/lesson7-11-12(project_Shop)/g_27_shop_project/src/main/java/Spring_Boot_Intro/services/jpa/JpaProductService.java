@@ -6,6 +6,7 @@ import Spring_Boot_Intro.domain.jpa.JpaProduct;
 import Spring_Boot_Intro.repositories.jpa.JpaProductRepository;
 import Spring_Boot_Intro.services.interfaces.ProductService;
 import Spring_Boot_Intro.services.mapping.ProductMappingService;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -22,24 +23,35 @@ public class JpaProductService implements ProductService {
 
   @Override
   public ProductDto save(ProductDto product) {
-   JpaProduct entity = mappingService.mapDtoToJpa(product);
-   entity = repository.save(entity);
-   return mappingService.mapEntityToDto(entity);
+    JpaProduct entity = mappingService.mapDtoToJpa(product);
+    entity.setId(0);
+    entity = repository.save(entity);
+    return mappingService.mapEntityToDto(entity);
   }
 
   @Override
   public List<ProductDto> getAllActiveProducts() {
-    return null;
+    return repository.findAll()
+        .stream()
+        .filter(x -> x.isActive())
+        .map(x -> mappingService.mapEntityToDto(x))
+        .toList();
   }
 
   @Override
   public ProductDto getActiveProductById(int id) {
+    JpaProduct product = repository.findById(id).orElse(null);
+
+    if (product != null && product.isActive()) {
+      return mappingService.mapEntityToDto(product);
+    }
     return null;
   }
 
   @Override
   public void update(ProductDto product) {
-
+    JpaProduct entity = mappingService.mapDtoToJpa(product);
+    repository.save(entity);
   }
 
   @Override
@@ -53,8 +65,13 @@ public class JpaProductService implements ProductService {
   }
 
   @Override
+  @Transactional
   public void restoreById(int id) {
+    JpaProduct product = repository.findById(id).orElse(null);
 
+    if (product != null) {
+      product.setActive(true);
+    }
   }
 
   @Override
