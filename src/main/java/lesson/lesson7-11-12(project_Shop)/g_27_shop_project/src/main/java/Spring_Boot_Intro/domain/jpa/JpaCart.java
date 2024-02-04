@@ -15,6 +15,8 @@ import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
+import org.slf4j.LoggerFactory;
 
 @Entity
 @Table(name = "carts")

@@ -8,6 +8,8 @@ import Spring_Boot_Intro.services.interfaces.ProductService;
 import Spring_Boot_Intro.services.mapping.ProductMappingService;
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.logging.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +17,7 @@ public class JpaProductService implements ProductService {
 
   private JpaProductRepository repository;
   private ProductMappingService mappingService;
+
 
   public JpaProductService(JpaProductRepository repository, ProductMappingService mappingService) {
     this.repository = repository;
