@@ -3,6 +3,10 @@ package Spring_Boot_Intro.services.jpa;
 import Spring_Boot_Intro.domain.DTO.ProductDto;
 import Spring_Boot_Intro.domain.interfaces.Product;
 import Spring_Boot_Intro.domain.jpa.JpaProduct;
+import Spring_Boot_Intro.exception_handling.exceptions.FirstTestException;
+import Spring_Boot_Intro.exception_handling.exceptions.FourthTestException;
+import Spring_Boot_Intro.exception_handling.exceptions.SecondTestException;
+import Spring_Boot_Intro.exception_handling.exceptions.ThirdTestException;
 import Spring_Boot_Intro.repositories.jpa.JpaProductRepository;
 import Spring_Boot_Intro.services.interfaces.ProductService;
 import Spring_Boot_Intro.services.mapping.ProductMappingService;
@@ -26,10 +30,15 @@ public class JpaProductService implements ProductService {
 
   @Override
   public ProductDto save(ProductDto product) {
-    JpaProduct entity = mappingService.mapDtoToJpa(product);
-    entity.setId(0);
-    entity = repository.save(entity);
-    return mappingService.mapEntityToDto(entity);
+    try {
+      JpaProduct entity = mappingService.mapDtoToJpa(product);
+      entity.setId(0);
+      entity = repository.save(entity);
+      return mappingService.mapEntityToDto(entity);
+    }catch (Exception e){
+      throw new FourthTestException(e.getMessage());
+    }
+
   }
 
   @Override
@@ -48,7 +57,7 @@ public class JpaProductService implements ProductService {
     if (product != null && product.isActive()) {
       return mappingService.mapEntityToDto(product);
     }
-    return null;
+    throw new ThirdTestException("Product with id " + id + " does not exist in data base");
   }
 
   @Override

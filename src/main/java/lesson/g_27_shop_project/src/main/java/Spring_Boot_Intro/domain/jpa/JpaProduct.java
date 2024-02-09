@@ -6,6 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import java.util.Objects;
 
 @Entity
@@ -18,7 +23,13 @@ public class JpaProduct implements Product {
     @Column(name = "is_active")
     private boolean isActive;
     @Column(name = "name")
+    //@NotNull
+    //@NotBlank
+    @Pattern(regexp = "[A-Z][a-z]{3,}")
     private String name;
+
+    @Max(9000)
+    @Min(1)
     @Column(name = "price")
     private double price;
 
