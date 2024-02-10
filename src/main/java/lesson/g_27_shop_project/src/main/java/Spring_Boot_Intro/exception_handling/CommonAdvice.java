@@ -1,7 +1,7 @@
 package Spring_Boot_Intro.exception_handling;
 
-import Spring_Boot_Intro.exception_handling.exceptions.FourthTestException;
-import Spring_Boot_Intro.exception_handling.exceptions.ThirdTestException;
+import Spring_Boot_Intro.exception_handling.exceptions_for_test.FourthTestException;
+import Spring_Boot_Intro.exception_handling.exceptions_for_test.ThirdTestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,19 +1,14 @@
 package Spring_Boot_Intro.services.jpa;
 
 import Spring_Boot_Intro.domain.DTO.ProductDto;
-import Spring_Boot_Intro.domain.interfaces.Product;
 import Spring_Boot_Intro.domain.jpa.JpaProduct;
-import Spring_Boot_Intro.exception_handling.exceptions.FirstTestException;
-import Spring_Boot_Intro.exception_handling.exceptions.FourthTestException;
-import Spring_Boot_Intro.exception_handling.exceptions.SecondTestException;
-import Spring_Boot_Intro.exception_handling.exceptions.ThirdTestException;
+import Spring_Boot_Intro.exception_handling.exceptions_for_test.FourthTestException;
+import Spring_Boot_Intro.exception_handling.exceptions_for_test.ThirdTestException;
 import Spring_Boot_Intro.repositories.jpa.JpaProductRepository;
 import Spring_Boot_Intro.services.interfaces.ProductService;
 import Spring_Boot_Intro.services.mapping.ProductMappingService;
 import jakarta.transaction.Transactional;
 import java.util.List;
-import java.util.logging.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,7 +30,7 @@ public class JpaProductService implements ProductService {
       entity.setId(0);
       entity = repository.save(entity);
       return mappingService.mapEntityToDto(entity);
-    }catch (Exception e){
+    } catch (Exception e) {
       throw new FourthTestException(e.getMessage());
     }
 
@@ -68,36 +63,52 @@ public class JpaProductService implements ProductService {
 
   @Override
   public void deleteById(int id) {
+    try {
+      JpaProduct product = repository.findById(id).orElse(null);
+      product.setActive(false);
+      repository.save(product);
+    } catch (Exception e) {
 
+    }
   }
+
 
   @Override
   public void deleteByName(String name) {
+    try {
+      JpaProduct product = repository.findByName(name);
+      product.setActive(false);
+      repository.save(product);
+    } catch (Exception e) {
 
+    }
   }
 
   @Override
   @Transactional
   public void restoreById(int id) {
-    JpaProduct product = repository.findById(id).orElse(null);
 
-    if (product != null) {
-      product.setActive(true);
-    }
+  try{
+    JpaProduct product = repository.findById(id).orElse(null);
+    product.setId(id);
+    repository.save(product);
+  }catch (Exception e){
+
+  }
   }
 
   @Override
   public int getActiveProductsCount() {
-    return 0;
+    return repository.getActiveProductsCount();
   }
 
   @Override
   public double getActiveProductsTotalPrice() {
-    return 0;
+    return repository.getActiveProductsTotalPrice();
   }
 
   @Override
   public double getActiveProductAveragePrice() {
-    return 0;
+    return repository.getActiveProductAveragePrice();
   }
 }

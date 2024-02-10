@@ -1,4 +1,4 @@
-package Spring_Boot_Intro.exception_handling.exceptions;
+package Spring_Boot_Intro.exception_handling.exceptions_for_test;
 
 public class FirstTestException extends RuntimeException{
 
