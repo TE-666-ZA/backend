@@ -5,6 +5,7 @@ import Spring_Boot_Intro.domain.interfaces.Product;
 import Spring_Boot_Intro.domain.jpa.JpaCustomer;
 import Spring_Boot_Intro.repositories.jpa.JpaCustomerRepository;
 import Spring_Boot_Intro.services.interfaces.CustomerService;
+import Spring_Boot_Intro.services.mapping.jpa.JpaCustomerMappingService;
 import Spring_Boot_Intro.services.mapping.old.CustomerMappingService;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -14,10 +15,10 @@ import org.springframework.stereotype.Service;
 public class JpaCustomerService implements CustomerService {
 
   private JpaCustomerRepository repository;
-  private CustomerMappingService mappingService;
+  private JpaCustomerMappingService mappingService;
 
   public JpaCustomerService(JpaCustomerRepository repository,
-      CustomerMappingService mappingService) {
+      JpaCustomerMappingService mappingService) {
     this.repository = repository;
     this.mappingService = mappingService;
   }
@@ -28,7 +29,7 @@ public class JpaCustomerService implements CustomerService {
       JpaCustomer entity = mappingService.mapDtoToJpa(customer);
       entity.setId(0);
       entity = repository.save(entity);
-      return mappingService.mapEntityToDto(entity);
+      return mappingService.mapJpaToDto(entity);
     } catch (Exception e) {
       throw new NoSuchElementException();
     }
@@ -37,14 +38,14 @@ public class JpaCustomerService implements CustomerService {
   @Override
   public List<CustomerDto> getAllActiveCustomers() {
     return repository.findAll().stream().filter(
-        x -> x.isActive()).map(x -> mappingService.mapEntityToDto(x)).toList();
+        x -> x.isActive()).map(x -> mappingService.mapJpaToDto(x)).toList();
   }
 
   @Override
   public CustomerDto getActiveCustomersById(int id) {
     JpaCustomer entity = repository.findById(id).orElse(null);
     if (entity != null && entity.isActive()) {
-      return mappingService.mapEntityToDto(entity);
+      return mappingService.mapJpaToDto(entity);
     }
     throw new RuntimeException();
 

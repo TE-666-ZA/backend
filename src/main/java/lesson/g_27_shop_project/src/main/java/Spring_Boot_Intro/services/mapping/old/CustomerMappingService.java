@@ -19,12 +19,12 @@ public class CustomerMappingService {
         customer.getEmail(), customer.getAge(),cartDto);
   }
 
-  public JpaCustomer mapDtoToJpa (CustomerDto customer){
-    JpaCart cart = cartMappingService.mapDtoToJpa(customer.getCart());
+ //public JpaCustomer mapDtoToJpa (CustomerDto customer){
+ //  JpaCart cart = cartMappingService.mapDtoToJpa(customer.getCart());
 
-    return new JpaCustomer(customer.getId(), customer.isActive(), customer.getName(),
-        customer.getEmail(), customer.getAge(),cart);
-  }
+ //  return new JpaCustomer(customer.getId(), customer.isActive(), customer.getName(),
+ //      customer.getEmail(), customer.getAge(),cart);
+ //}
 
   public CommonCustomer mapDtoToCommon (CustomerDto customer){
     return new CommonCustomer(customer.getId(), customer.getName());

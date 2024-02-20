@@ -9,9 +9,9 @@ public class CartDto {
   private int id;
   private Customer customer;
 
-  private List<Product> products;
+  private List<ProductDto> products;
 
-  public CartDto(int id, Customer customer, List<Product> products) {
+  public CartDto(int id, Customer customer, List<ProductDto> products) {
     this.id = id;
     this.customer = customer;
     this.products = products;
@@ -25,7 +25,7 @@ public class CartDto {
     return customer;
   }
 
-  public List<Product> getProducts() {
+  public List<ProductDto> getProducts() {
     return products;
   }
 }

@@ -16,6 +16,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "customers")
@@ -99,10 +100,7 @@ public class JpaCustomer implements Customer {
   }
 
   public void setCart(Cart cart) {
-    JpaCart entity = new JpaCart();
-    entity.setId(cart.getId());
-    entity.setProducts(cart.getProducts());
-    this.cart = entity;
+
   }
 
   @Override

@@ -40,9 +40,9 @@ public class CommonCustomerService implements CustomerService {
     if(entity.isEmpty()){
       throw new NoSuchElementException("There is no active products");
     }
-   // List<CustomerDto> result = entity.stream().map(x -> new CustomerDto(x.getId(), x.isActive(),
-   //     x.getName(), x.getEmail(), x.getAge(),
-   //     cartMappingService(x.getCart())).toList();
+   List<CustomerDto> result = entity.stream().map(x -> new CustomerDto(x.getId(), x.isActive(),
+       x.getName(), x.getEmail(), x.getAge(),
+       cartMappingService.mapEntityToDto(x.getCart()))).toList();
     return result;
   }
 

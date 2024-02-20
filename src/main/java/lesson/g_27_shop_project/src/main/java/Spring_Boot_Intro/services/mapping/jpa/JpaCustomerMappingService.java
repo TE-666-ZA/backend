@@ -4,7 +4,7 @@ import Spring_Boot_Intro.domain.DTO.CustomerDto;
 import Spring_Boot_Intro.domain.jpa.JpaCustomer;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",uses = {JpaCartMappingService.class})
 public interface JpaCustomerMappingService {
 
   CustomerDto mapJpaToDto (JpaCustomer jpaCustomer);
