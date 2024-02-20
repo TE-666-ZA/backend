@@ -6,7 +6,7 @@ import Spring_Boot_Intro.exception_handling.exceptions_for_test.FourthTestExcept
 import Spring_Boot_Intro.exception_handling.exceptions_for_test.ThirdTestException;
 import Spring_Boot_Intro.repositories.jpa.JpaProductRepository;
 import Spring_Boot_Intro.services.interfaces.ProductService;
-import Spring_Boot_Intro.services.mapping.ProductMappingService;
+import Spring_Boot_Intro.services.mapping.old.ProductMappingService;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.stereotype.Service;

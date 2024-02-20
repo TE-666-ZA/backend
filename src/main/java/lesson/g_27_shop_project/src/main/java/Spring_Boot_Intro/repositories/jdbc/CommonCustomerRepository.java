@@ -2,12 +2,12 @@ package Spring_Boot_Intro.repositories.jdbc;
 
 import static Spring_Boot_Intro.repositories.jdbc.DBConncection.getConnection;
 
+import Spring_Boot_Intro.domain.interfaces.Customer;
 import Spring_Boot_Intro.domain.interfaces.Product;
 import Spring_Boot_Intro.domain.jdbc.CommonCart;
 import Spring_Boot_Intro.domain.jdbc.CommonCustomer;
 import Spring_Boot_Intro.domain.jdbc.CommonProduct;
 import Spring_Boot_Intro.domain.interfaces.Cart;
-import Spring_Boot_Intro.domain.interfaces.Customer;
 import Spring_Boot_Intro.repositories.interfaces.CustomerRepository;
 import java.sql.Connection;
 import java.sql.ResultSet;

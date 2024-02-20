@@ -11,8 +11,12 @@ public interface Customer {
 
   String getName();
   void setName(String name);
+  int getAge();
 
   Cart getCart();
   void setCart(Cart cart);
+  String getEmail();
+  void setEmail(String email);
+
 
 }

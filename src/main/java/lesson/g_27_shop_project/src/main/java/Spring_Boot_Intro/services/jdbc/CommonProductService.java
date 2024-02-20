@@ -2,10 +2,9 @@ package Spring_Boot_Intro.services.jdbc;
 
 import Spring_Boot_Intro.domain.DTO.ProductDto;
 import Spring_Boot_Intro.domain.interfaces.Product;
-import Spring_Boot_Intro.domain.jdbc.CommonProduct;
 import Spring_Boot_Intro.repositories.interfaces.ProductRepository;
 import Spring_Boot_Intro.services.interfaces.ProductService;
-import Spring_Boot_Intro.services.mapping.ProductMappingService;
+import Spring_Boot_Intro.services.mapping.old.ProductMappingService;
 import java.util.List;
 import java.util.NoSuchElementException;
 

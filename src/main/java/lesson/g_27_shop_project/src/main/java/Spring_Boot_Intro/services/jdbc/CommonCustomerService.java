@@ -1,45 +1,58 @@
 package Spring_Boot_Intro.services.jdbc;
 
+import Spring_Boot_Intro.domain.DTO.CustomerDto;
 import Spring_Boot_Intro.domain.interfaces.Customer;
+import Spring_Boot_Intro.domain.jdbc.CommonCustomer;
 import Spring_Boot_Intro.repositories.jdbc.CommonCustomerRepository;
 import Spring_Boot_Intro.services.interfaces.CustomerService;
+import Spring_Boot_Intro.services.mapping.old.CartMappingService;
+import Spring_Boot_Intro.services.mapping.old.CustomerMappingService;
 import java.util.List;
 import java.util.NoSuchElementException;
-import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class CommonCustomerService implements CustomerService {
 
   private CommonCustomerRepository repository;
+  private CustomerMappingService customerMappingService;
+  private CartMappingService cartMappingService;
 
-  public CommonCustomerService(CommonCustomerRepository repository) {
+  public CommonCustomerService(CommonCustomerRepository repository,
+      CustomerMappingService customerMappingService, CartMappingService cartMappingService) {
     this.repository = repository;
+    this.customerMappingService = customerMappingService;
+    this.cartMappingService = cartMappingService;
   }
 
   @Override
-  public Customer save(Customer customer) {
+  public CustomerDto save(CustomerDto customer) {
     if(customer.getName().isEmpty() || customer.getName().isBlank()){
       throw new IllegalArgumentException("Customer name cant be empty");
     }
-    return repository.save(customer);
+   CommonCustomer entity =  customerMappingService.mapDtoToCommon(customer);
+    repository.save(entity);
+    return customerMappingService.mapEntityToDto(entity);
   }
 
   @Override
-  public List<Customer> getAllActiveCustomers() {
-    List<Customer> result = repository.getAll();
-    if(result.isEmpty()){
+  public List<CustomerDto> getAllActiveCustomers() {
+    List<Customer> entity = repository.getAll();
+    if(entity.isEmpty()){
       throw new NoSuchElementException("There is no active products");
     }
+   // List<CustomerDto> result = entity.stream().map(x -> new CustomerDto(x.getId(), x.isActive(),
+   //     x.getName(), x.getEmail(), x.getAge(),
+   //     cartMappingService(x.getCart())).toList();
     return result;
   }
 
   @Override
-  public Customer getActiveCustomersId(int id) {
+  public CustomerDto getActiveCustomersById(int id) {
     return null;
   }
 
   @Override
-  public void update(Customer Customer) {
+  public void update(CustomerDto Customer) {
 
   }
 

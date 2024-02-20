@@ -1,6 +1,7 @@
 package Spring_Boot_Intro.domain.jdbc;
 
 import Spring_Boot_Intro.domain.interfaces.Cart;
+import Spring_Boot_Intro.domain.interfaces.Customer;
 import Spring_Boot_Intro.domain.interfaces.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
@@ -24,6 +25,11 @@ public class CommonCart implements Cart {
   }
 
   @Override
+  public void setId(int id) {
+
+  }
+
+  @Override
   public List<Product> getProducts() {
     return this.products;
   }
@@ -34,7 +40,17 @@ public class CommonCart implements Cart {
   }
 
   @Override
-  public void delteProductById(int productId) {
+  public Customer getCustomer() {
+    return null;
+  }
+
+  @Override
+  public void setCustomer(Customer customer) {
+
+  }
+
+  @Override
+  public void deleteProductById(int productId) {
     this.products.removeIf(x ->x.getId() == productId);
   }
 

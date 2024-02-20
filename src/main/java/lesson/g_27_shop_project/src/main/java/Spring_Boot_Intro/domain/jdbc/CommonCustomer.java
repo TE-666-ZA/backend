@@ -11,6 +11,8 @@ public class CommonCustomer implements Customer {
   private String name;
   private Cart cart;
 
+  private String email;
+  private int age;
   public CommonCustomer() {
     this.isActive = true;
   }
@@ -32,6 +34,34 @@ public class CommonCustomer implements Customer {
     this.isActive = isActive;
     this.name = name;
     this.cart = cart;
+  }
+
+  public CommonCustomer(int id, boolean isActive, String name, Cart cart, String email, int age) {
+    this.id = id;
+    this.isActive = isActive;
+    this.name = name;
+    this.cart = cart;
+    this.email = email;
+    this.age = age;
+  }
+
+  @Override
+  public String getEmail() {
+    return email;
+  }
+
+  @Override
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  @Override
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
   }
 
   public void setId(int id) {

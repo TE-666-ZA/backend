@@ -1,17 +1,20 @@
 package Spring_Boot_Intro.services.interfaces;
 
+import Spring_Boot_Intro.domain.DTO.CustomerDto;
 import Spring_Boot_Intro.domain.interfaces.Customer;
 import java.util.List;
+import org.springframework.stereotype.Service;
+
 
 public interface CustomerService {
   
-  Customer save (Customer customer);
+  CustomerDto save (CustomerDto customer);
 
-  List<Customer> getAllActiveCustomers();
+  List<CustomerDto> getAllActiveCustomers();
 
-  Customer getActiveCustomersId(int id);
+  CustomerDto getActiveCustomersById(int id);
 
-  void update(Customer customer);
+  void update(CustomerDto customer);
 
   void deleteById(int id);
 

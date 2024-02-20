@@ -17,7 +17,7 @@ public class CommonAdvice {
   }
 
   @ExceptionHandler(FourthTestException.class)
-  public ResponseEntity<Response> handleEception(FourthTestException e){
+  public ResponseEntity<Response> handleException(FourthTestException e){
     Response response = new Response(e.getMessage());
     return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
   }

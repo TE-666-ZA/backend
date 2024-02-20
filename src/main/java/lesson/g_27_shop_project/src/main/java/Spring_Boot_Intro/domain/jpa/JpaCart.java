@@ -1,6 +1,7 @@
 package Spring_Boot_Intro.domain.jpa;
 
 import Spring_Boot_Intro.domain.interfaces.Cart;
+import Spring_Boot_Intro.domain.interfaces.Customer;
 import Spring_Boot_Intro.domain.interfaces.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,11 +13,8 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.logging.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "carts")
@@ -40,35 +38,23 @@ public class JpaCart implements Cart {
   public JpaCart() {
   }
 
-  @Override
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
+  public JpaCart(int id, JpaCustomer customer, List<JpaProduct> products) {
     this.id = id;
+    this.customer = customer;
+    this.products = products;
   }
 
   public JpaCustomer getCustomer() {
     return customer;
   }
 
-  public void setCustomer(JpaCustomer customer) {
-       this.customer = customer;
-  }
-
   @Override
-  public List<Product> getProducts() {
-    return new ArrayList<>(products);
-  }
-
-  @Override
-  public void addProduct(Product product) {
+  public void setCustomer(Customer customer) {
 
   }
 
   @Override
-  public void delteProductById(int productId) {
+  public void deleteProductById(int productId) {
 
   }
 
@@ -87,41 +73,32 @@ public class JpaCart implements Cart {
     return 0;
   }
 
+  @Override
+  public int getId() {
+    return id;
+  }
+
+  @Override
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  @Override
+  public List<Product> getProducts() {
+    return products.stream()
+        .map(x -> new JpaProduct(x.getId(), x.getName(), x.getPrice()))
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public void addProduct(Product product) {
+
+  }
+
+
   public void setProducts(List<Product> products) {
-    this.products = products.stream().map(x -> {
-      JpaProduct entity = new JpaProduct();
-      entity.setId(x.getId());
-      entity.setName(x.getName());
-      entity.setPrice(x.getPrice());
-      entity.setActive(x.isActive());
-      return entity;
-    }).toList();
-  }
+    this.products = products.stream().map(x -> new JpaProduct(x.getId(),
+            x.getName(), x.getPrice())).toList();
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    JpaCart jpaCart = (JpaCart) o;
-    return id == jpaCart.id && Objects.equals(customer, jpaCart.customer)
-        && Objects.equals(products, jpaCart.products);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, customer, products);
-  }
-
-  @Override
-  public String toString() {
-    return "JpaCart{" +
-        "id=" + id +
-        ", customer=" + customer +
-        ", products=" + products +
-        '}';
   }
 }

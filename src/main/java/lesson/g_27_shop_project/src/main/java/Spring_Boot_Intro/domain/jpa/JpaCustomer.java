@@ -9,6 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import java.util.Objects;
 
 @Entity
@@ -22,13 +28,19 @@ public class JpaCustomer implements Customer {
   @Column(name = "is_active")
   private boolean isActive;
   @Column(name = "name")
+  @Pattern(regexp = "[a-z]{4,18}")
   private String name;
   @Column(name = "email")
+  @Email
   private String email;
+
   @Column(name = "age")
+  @Min(14)
+  @Max(120)
   private int age;
 
   @OneToOne(mappedBy = "customer")
+  @NotNull
   private JpaCart cart;
 
   public JpaCustomer() {
@@ -37,6 +49,29 @@ public class JpaCustomer implements Customer {
   @Override
   public int getId() {
     return id;
+  }
+
+  @Override
+  public int getAge() {
+    return age;
+  }
+
+  @Override
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public JpaCustomer(int id, boolean isActive, String name, String email, int age, JpaCart cart) {
+    this.id = id;
+    this.isActive = isActive;
+    this.name = name;
+    this.email = email;
+    this.age = age;
+    this.cart = cart;
   }
 
   public void setId(int id) {
@@ -79,13 +114,14 @@ public class JpaCustomer implements Customer {
       return false;
     }
     JpaCustomer that = (JpaCustomer) o;
-    return id == that.id && isActive == that.isActive && Objects.equals(name, that.name)
-        && Objects.equals(cart, that.cart);
+    return id == that.id && isActive == that.isActive && age == that.age && Objects.equals(
+        name, that.name) && Objects.equals(email, that.email) && Objects.equals(
+        cart, that.cart);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, isActive, name, cart);
+    return Objects.hash(id, isActive, name, email, age, cart);
   }
 
   @Override
@@ -94,6 +130,8 @@ public class JpaCustomer implements Customer {
         "id=" + id +
         ", isActive=" + isActive +
         ", name='" + name + '\'' +
+        ", email='" + email + '\'' +
+        ", age=" + age +
         ", cart=" + cart +
         '}';
   }
