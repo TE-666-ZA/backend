@@ -14,7 +14,6 @@ public interface Customer {
   int getAge();
 
   Cart getCart();
-  void setCart(Cart cart);
   String getEmail();
   void setEmail(String email);
 

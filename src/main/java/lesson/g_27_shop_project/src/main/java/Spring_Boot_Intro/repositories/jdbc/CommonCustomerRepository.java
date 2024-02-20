@@ -58,7 +58,7 @@ public class CommonCustomerRepository implements CustomerRepository {
 
       resultSet.next();
 
-      customer.setCart(new CommonCart(resultSet.getInt(ID)));
+     // customer.setCart(new CommonCart(resultSet.getInt(ID)));
 
       return customer;
 
@@ -91,10 +91,10 @@ public class CommonCustomerRepository implements CustomerRepository {
           customer = customers.get(customerId);
         } else {
           int cartId = resultSet.getInt(CART_ID);
-          Cart cart = new CommonCart(cartId);
+          CommonCart cart = new CommonCart(cartId);
 
           String customerName = resultSet.getString(CUSTOMER_NAME);
-          customer = new CommonCustomer(customerId,true, customerName, cart);
+          customer = new CommonCustomer(customerId,true, customerName, (Cart) cart);
           customers.put(customerId, customer);
         }
 

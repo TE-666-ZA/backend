@@ -1,5 +1,6 @@
 package Spring_Boot_Intro.domain.interfaces;
 
+import Spring_Boot_Intro.domain.jpa.JpaProduct;
 import java.util.List;
 
 public interface Cart {
@@ -9,7 +10,7 @@ public interface Cart {
 
   void setId(int id);
 
-  List<Product> getProducts();
+  List<JpaProduct> getProducts();
 
   void addProduct(Product product);
   Customer getCustomer();

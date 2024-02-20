@@ -6,6 +6,7 @@ import Spring_Boot_Intro.exception_handling.exceptions_for_test.FourthTestExcept
 import Spring_Boot_Intro.exception_handling.exceptions_for_test.ThirdTestException;
 import Spring_Boot_Intro.repositories.jpa.JpaProductRepository;
 import Spring_Boot_Intro.services.interfaces.ProductService;
+import Spring_Boot_Intro.services.mapping.jpa.JpaProductMappingService;
 import Spring_Boot_Intro.services.mapping.old.ProductMappingService;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -15,10 +16,10 @@ import org.springframework.stereotype.Service;
 public class JpaProductService implements ProductService {
 
   private JpaProductRepository repository;
-  private ProductMappingService mappingService;
+  private JpaProductMappingService mappingService;
 
-
-  public JpaProductService(JpaProductRepository repository, ProductMappingService mappingService) {
+  public JpaProductService(JpaProductRepository repository,
+      JpaProductMappingService mappingService) {
     this.repository = repository;
     this.mappingService = mappingService;
   }
@@ -29,7 +30,7 @@ public class JpaProductService implements ProductService {
       JpaProduct entity = mappingService.mapDtoToJpa(product);
       entity.setId(0);
       entity = repository.save(entity);
-      return mappingService.mapEntityToDto(entity);
+      return mappingService.mapJpaToDto(entity);
     } catch (Exception e) {
       throw new FourthTestException(e.getMessage());
     }
@@ -41,7 +42,7 @@ public class JpaProductService implements ProductService {
     return repository.findAll()
         .stream()
         .filter(x -> x.isActive())
-        .map(x -> mappingService.mapEntityToDto(x))
+        .map(x -> mappingService.mapJpaToDto(x))
         .toList();
   }
 
@@ -50,7 +51,7 @@ public class JpaProductService implements ProductService {
     JpaProduct product = repository.findById(id).orElse(null);
 
     if (product != null && product.isActive()) {
-      return mappingService.mapEntityToDto(product);
+      return mappingService.mapJpaToDto(product);
     }
     throw new ThirdTestException("Product with id " + id + " does not exist in data base");
   }

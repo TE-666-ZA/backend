@@ -37,15 +37,16 @@ public class JpaCustomerService implements CustomerService {
 
   @Override
   public List<CustomerDto> getAllActiveCustomers() {
-    return repository.findAll().stream().filter(
-        x -> x.isActive()).map(x -> mappingService.mapJpaToDto(x)).toList();
+    List<JpaCustomer> customers = repository.findAll();
+    customers.stream().filter(x -> x.isActive());
+    return customers.stream().map(x -> mappingService.mapJpaToDto(x)).toList();
   }
 
   @Override
   public CustomerDto getActiveCustomersById(int id) {
     JpaCustomer entity = repository.findById(id).orElse(null);
     if (entity != null && entity.isActive()) {
-      return mappingService.mapJpaToDto(entity);
+      return entity == null ? null : mappingService.mapJpaToDto(entity);
     }
     throw new RuntimeException();
 
@@ -99,7 +100,7 @@ public class JpaCustomerService implements CustomerService {
   public double getTotalCartPriceById(int customerId) {
     JpaCustomer customer = repository.findById(customerId).orElse(null);
     if (customer != null && customer.isActive()) {
-      List<Product> products = customer.getCart().getProducts();
+      List<Product> products = null;
       if (!products.isEmpty()) {
         return products.stream().filter(Product::isActive)
             .mapToDouble(Product::getPrice).sum();
@@ -112,7 +113,7 @@ public class JpaCustomerService implements CustomerService {
   public double getAveragePriceById(int customerId) {
     JpaCustomer customer = repository.findById(customerId).orElse(null);
     if (customer != null && customer.isActive()) {
-      List<Product> products = customer.getCart().getProducts();
+      List<Product> products = null;
       if (!products.isEmpty()) {
         return products.stream().filter(Product::isActive)
             .mapToDouble(Product::getPrice).average().orElse(0.0);

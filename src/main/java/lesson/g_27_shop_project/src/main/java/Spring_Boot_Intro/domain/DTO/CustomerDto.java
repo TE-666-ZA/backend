@@ -13,6 +13,9 @@ public class CustomerDto {
   private int age;
   private CartDto cart;
 
+  public CustomerDto() {
+  }
+
   public CustomerDto(int id, boolean isActive, String name, String email, int age, CartDto cart) {
     this.id = id;
     this.isActive = isActive;
@@ -26,24 +29,48 @@ public class CustomerDto {
     return id;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
+
   public boolean isActive() {
     return isActive;
+  }
+
+  public void setActive(boolean active) {
+    isActive = active;
   }
 
   public String getName() {
     return name;
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public String getEmail() {
     return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public int getAge() {
     return age;
   }
 
+  public void setAge(int age) {
+    this.age = age;
+  }
+
   public CartDto getCart() {
     return cart;
+  }
+
+  public void setCart(CartDto cart) {
+    this.cart = cart;
   }
 
   @Override
@@ -67,7 +94,7 @@ public class CustomerDto {
 
   @Override
   public String toString() {
-    return "Customer{" +
+    return "CustomerDto{" +
         "id=" + id +
         ", isActive=" + isActive +
         ", name='" + name + '\'' +

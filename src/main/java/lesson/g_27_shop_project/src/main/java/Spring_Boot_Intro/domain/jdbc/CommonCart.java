@@ -3,14 +3,15 @@ package Spring_Boot_Intro.domain.jdbc;
 import Spring_Boot_Intro.domain.interfaces.Cart;
 import Spring_Boot_Intro.domain.interfaces.Customer;
 import Spring_Boot_Intro.domain.interfaces.Product;
+import Spring_Boot_Intro.domain.jpa.JpaProduct;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommonCart implements Cart {
+public class CommonCart  {
 
   private int id;
-    private List<Product> products = new ArrayList<>();
+    private List<CommonProduct> products = new ArrayList<>();
 
   public CommonCart() {
   }
@@ -19,47 +20,47 @@ public class CommonCart implements Cart {
     this.id = id;
   }
 
-  @Override
+
   public int getId() {
     return this.id;
   }
 
-  @Override
+
   public void setId(int id) {
 
   }
 
-  @Override
-  public List<Product> getProducts() {
+
+  public List<CommonProduct> getProducts() {
     return this.products;
   }
 
-  @Override
-  public void addProduct(Product product) {
+
+  public void addProduct(CommonProduct product) {
     this.products.add(product);
   }
 
-  @Override
+
   public Customer getCustomer() {
     return null;
   }
 
-  @Override
+
   public void setCustomer(Customer customer) {
 
   }
 
-  @Override
+
   public void deleteProductById(int productId) {
     this.products.removeIf(x ->x.getId() == productId);
   }
 
-  @Override
+
   public void clear() {
     this.products.clear();
   }
 
-  @Override
+
   public double getTotalPrice() {
     return this.products.stream()
         .filter(x -> x.isActive())
@@ -67,8 +68,7 @@ public class CommonCart implements Cart {
         .sum();
   }
 
-  @Override
-  @JsonIgnore
+
   public double getAveragePrice() {
     return this.products.stream()
         .filter(x -> x.isActive())

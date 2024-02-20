@@ -14,7 +14,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "carts")
@@ -83,22 +82,25 @@ public class JpaCart implements Cart {
     this.id = id;
   }
 
-  @Override
-  public List<Product> getProducts() {
-    return products.stream()
-        .map(x -> new JpaProduct(x.getId(), x.getName(), x.getPrice()))
-        .collect(Collectors.toList());
-  }
 
   @Override
   public void addProduct(Product product) {
-
+    JpaProduct jpaProduct = new JpaProduct(
+        product.getId(), product.getName(), product.getPrice()
+    );
+    this.products.add(jpaProduct);
   }
 
+  public void setCustomer(JpaCustomer customer) {
+    this.customer = customer;
+  }
 
-  public void setProducts(List<Product> products) {
-    this.products = products.stream().map(x -> new JpaProduct(x.getId(),
-            x.getName(), x.getPrice())).toList();
+  @Override
+  public List<JpaProduct> getProducts() {
+    return products;
+  }
 
+  public void setProducts(List<JpaProduct> products) {
+    this.products = products;
   }
 }
