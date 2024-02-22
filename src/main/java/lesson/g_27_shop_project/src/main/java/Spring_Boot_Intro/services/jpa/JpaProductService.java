@@ -6,8 +6,8 @@ import Spring_Boot_Intro.exception_handling.exceptions_for_test.FourthTestExcept
 import Spring_Boot_Intro.exception_handling.exceptions_for_test.ThirdTestException;
 import Spring_Boot_Intro.repositories.jpa.JpaProductRepository;
 import Spring_Boot_Intro.services.interfaces.ProductService;
-import Spring_Boot_Intro.services.mapping.jpa.JpaProductMappingService;
-import Spring_Boot_Intro.services.mapping.old.ProductMappingService;
+import Spring_Boot_Intro.services.mapping.mapstruct.JpaListProductMappingService;
+import Spring_Boot_Intro.services.mapping.mapstruct.JpaProductMappingService;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,13 @@ public class JpaProductService implements ProductService {
 
   private JpaProductRepository repository;
   private JpaProductMappingService mappingService;
+  private JpaListProductMappingService listProductMappingService;
 
-  public JpaProductService(JpaProductRepository repository,
-      JpaProductMappingService mappingService) {
+  public JpaProductService(JpaProductRepository repository, JpaProductMappingService mappingService,
+      JpaListProductMappingService listProductMappingService) {
     this.repository = repository;
     this.mappingService = mappingService;
+    this.listProductMappingService = listProductMappingService;
   }
 
   @Override
@@ -39,11 +41,8 @@ public class JpaProductService implements ProductService {
 
   @Override
   public List<ProductDto> getAllActiveProducts() {
-    return repository.findAll()
-        .stream()
-        .filter(x -> x.isActive())
-        .map(x -> mappingService.mapJpaToDto(x))
-        .toList();
+    return listProductMappingService.mapJpaToDto(repository.findAll().stream()
+        .filter(x -> x.isActive()).toList());
   }
 
   @Override
@@ -88,10 +87,9 @@ public class JpaProductService implements ProductService {
   @Override
   @Transactional
   public void restoreById(int id) {
-
   try{
     JpaProduct product = repository.findById(id).orElse(null);
-    product.setId(id);
+    product.setActive(true);
     repository.save(product);
   }catch (Exception e){
 

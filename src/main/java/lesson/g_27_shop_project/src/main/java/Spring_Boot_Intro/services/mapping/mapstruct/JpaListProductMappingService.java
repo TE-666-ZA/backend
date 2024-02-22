@@ -1,4 +1,4 @@
-package Spring_Boot_Intro.services.mapping.jpa;
+package Spring_Boot_Intro.services.mapping.mapstruct;
 
 import Spring_Boot_Intro.domain.DTO.ProductDto;
 import Spring_Boot_Intro.domain.jpa.JpaProduct;
@@ -8,8 +8,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring",uses = {JpaProductMappingService.class})
 public interface JpaListProductMappingService {
 
-List<JpaProduct> mapJpaToDto (List<ProductDto> products);
+List<JpaProduct> mapDtoToJpa (List<ProductDto> products);
 
-List<ProductDto> mapDtoToJpa (List<JpaProduct> products);
+List<ProductDto> mapJpaToDto (List<JpaProduct> products);
 
 }

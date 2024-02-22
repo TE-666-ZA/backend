@@ -5,8 +5,8 @@ import Spring_Boot_Intro.domain.interfaces.Product;
 import Spring_Boot_Intro.domain.jpa.JpaCustomer;
 import Spring_Boot_Intro.repositories.jpa.JpaCustomerRepository;
 import Spring_Boot_Intro.services.interfaces.CustomerService;
-import Spring_Boot_Intro.services.mapping.jpa.JpaCustomerMappingService;
-import Spring_Boot_Intro.services.mapping.old.CustomerMappingService;
+import Spring_Boot_Intro.services.mapping.mapstruct.CycleAvoidingMappingContext;
+import Spring_Boot_Intro.services.mapping.mapstruct.JpaCustomerMappingService;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
@@ -16,20 +16,22 @@ public class JpaCustomerService implements CustomerService {
 
   private JpaCustomerRepository repository;
   private JpaCustomerMappingService mappingService;
+  private CycleAvoidingMappingContext context;
 
   public JpaCustomerService(JpaCustomerRepository repository,
       JpaCustomerMappingService mappingService) {
     this.repository = repository;
     this.mappingService = mappingService;
+    this.context = new CycleAvoidingMappingContext();
   }
 
   @Override
   public CustomerDto save(CustomerDto customer) {
     try {
-      JpaCustomer entity = mappingService.mapDtoToJpa(customer);
+      JpaCustomer entity = mappingService.mapDtoToJpa(customer, context);
       entity.setId(0);
       entity = repository.save(entity);
-      return mappingService.mapJpaToDto(entity);
+      return mappingService.mapJpaToDto(entity,context);
     } catch (Exception e) {
       throw new NoSuchElementException();
     }
@@ -37,16 +39,15 @@ public class JpaCustomerService implements CustomerService {
 
   @Override
   public List<CustomerDto> getAllActiveCustomers() {
-    List<JpaCustomer> customers = repository.findAll();
-    customers.stream().filter(x -> x.isActive());
-    return customers.stream().map(x -> mappingService.mapJpaToDto(x)).toList();
+  return repository.findAll().stream().filter(x -> x.isActive())
+      .map(x-> mappingService.mapJpaToDto(x,context)).toList();
   }
 
   @Override
   public CustomerDto getActiveCustomersById(int id) {
     JpaCustomer entity = repository.findById(id).orElse(null);
     if (entity != null && entity.isActive()) {
-      return entity == null ? null : mappingService.mapJpaToDto(entity);
+      return mappingService.mapJpaToDto(entity,context);
     }
     throw new RuntimeException();
 
@@ -54,7 +55,7 @@ public class JpaCustomerService implements CustomerService {
 
   @Override
   public void update(CustomerDto customer) {
-    repository.save(mappingService.mapDtoToJpa(customer));
+    repository.save(mappingService.mapDtoToJpa(customer,context));
   }
 
   @Override
